@@ -6,23 +6,15 @@ import { TaskForm } from 'components/TaskForm/TaskForm';
 import { useState } from 'react';
 
 export const App = () => {
-  const [tasks, setTasks] = useState([
-    {
-      dayTask: 'Monday',
-      title: 'I am new task',
-      departament: 'IT',
-      content: 'update App',
-      id: nanoid(),
-    },
-  ]);
+  const [tasks, setTasks] = useState([]);
    const [selectedDay, setSelectedDay] = useState(null);
 
   const addTask = () => {
     const newTask = {
-      dayTask: 'Monday',
-      title: 'I am new task',
-      departament: 'IT',
-      content: 'update App',
+      dayTask: 'Enter day',
+      title: 'Write title',
+      departament: 'Chose department',
+      content: 'write content',
       id: nanoid(),
     };
     setTasks([...tasks, newTask]);

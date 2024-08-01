@@ -1,6 +1,9 @@
 import {
-  TaskLisActiveWrapper,
-  TaskLisInactiveWrapper,
+  AddButton,
+  DeleteButton,
+  TaskListActiveWrapper,
+  TaskListInactiveWrapper,
+  TaskListWrapper,
 } from './TaskList.styled';
 
 export const TaskList = ({
@@ -11,41 +14,39 @@ export const TaskList = ({
   setSelectedDay,
 }) => {
   return (
-    <div>
+    <TaskListWrapper>
       <h1>Add your task into todo List</h1>
-      <button onClick={addTask}>Add</button>
+      <AddButton onClick={addTask}>Add</AddButton>
       {tasks.map(({ title, content, id, departament, dayTask }, index) => {
         return (
           <div key={index}>
             {id === selectedDay ? (
-              <TaskLisActiveWrapper onClick={() => setSelectedDay(id)}>
+              <TaskListActiveWrapper onClick={() => setSelectedDay(id)}>
                 <p>{dayTask}</p>
                 <p>{title.substring(0, 60)}</p>
                 <p>{departament}</p>
                 <p>{content.substring(0, 60)}</p>
-                <button
+                <DeleteButton
                   onClick={e => {
                     e.stopPropagation();
                     deleteDay(id);
                   }}
                 >
-                  Delete
-                </button>
-              </TaskLisActiveWrapper>
+                  X
+                </DeleteButton>
+              </TaskListActiveWrapper>
             ) : (
-              <TaskLisInactiveWrapper onClick={() => setSelectedDay(id)}>
+              <TaskListInactiveWrapper onClick={() => setSelectedDay(id)}>
                 <p>{dayTask}</p>
                 <p>{title.substring(0, 60)}</p>
                 <p>{departament}</p>
                 <p>{content.substring(0, 60)}</p>
-                <button className="button-delete" onClick={() => deleteDay(id)}>
-                  Delete
-                </button>
-              </TaskLisInactiveWrapper>
+                <DeleteButton onClick={() => deleteDay(id)}>X</DeleteButton>
+              </TaskListInactiveWrapper>
             )}
           </div>
         );
       })}
-    </div>
+    </TaskListWrapper>
   );
 };
