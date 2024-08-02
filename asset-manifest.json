@@ -1,14 +1,22 @@
 {
   "files": {
-    "main.css": "/my-final-react-project/static/css/main.20999850.css",
-    "main.js": "/my-final-react-project/static/js/main.d5dc795d.js",
+    "main.css": "/my-final-react-project/static/css/main.aa3f5b32.css",
+    "main.js": "/my-final-react-project/static/js/main.0796d4a4.js",
     "static/media/background.jpg": "/my-final-react-project/static/media/background.ba134d71082c78385686.jpg",
+    "static/media/slide-3.jpg": "/my-final-react-project/static/media/slide-3.64084d9f9438f3f0577f.jpg",
+    "static/media/slide-1.jpg": "/my-final-react-project/static/media/slide-1.ee7b6e4deda0864bc631.jpg",
+    "static/media/slide-4.jpg": "/my-final-react-project/static/media/slide-4.15fe64253c1888fad933.jpg",
+    "static/media/slide-2.jpg": "/my-final-react-project/static/media/slide-2.601588faa87549bcdb95.jpg",
+    "static/media/slick.svg": "/my-final-react-project/static/media/slick.2630a3e3eab21c607e21.svg",
+    "static/media/slick.eot": "/my-final-react-project/static/media/slick.a4e97f5a2a64f0ab1323.eot",
+    "static/media/slick.ttf": "/my-final-react-project/static/media/slick.c94f7671dcc99dce43e2.ttf",
+    "static/media/slick.woff": "/my-final-react-project/static/media/slick.295183786cd8a1389865.woff",
     "index.html": "/my-final-react-project/index.html",
-    "main.20999850.css.map": "/my-final-react-project/static/css/main.20999850.css.map",
-    "main.d5dc795d.js.map": "/my-final-react-project/static/js/main.d5dc795d.js.map"
+    "main.aa3f5b32.css.map": "/my-final-react-project/static/css/main.aa3f5b32.css.map",
+    "main.0796d4a4.js.map": "/my-final-react-project/static/js/main.0796d4a4.js.map"
   },
   "entrypoints": [
-    "static/css/main.20999850.css",
-    "static/js/main.d5dc795d.js"
+    "static/css/main.aa3f5b32.css",
+    "static/js/main.0796d4a4.js"
   ]
 }
