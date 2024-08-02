@@ -1,50 +1,87 @@
 import { nanoid } from 'nanoid';
-
-import { TaskList } from 'components/TaskList/TaskList';
-import { AppWrapper } from './App.styled';
-import { TaskForm } from 'components/TaskForm/TaskForm';
 import { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import TaskManager from 'Pages/TaskManager/TaskManager';
+import Home from 'Pages/Home/Home';
+import About from 'Pages/About/About';
+import Contacts from 'Pages/Contacts/Contacts';
+import { Navbar, NavbarItem, NavbarLink, NavbarList } from './App.styled';
 
 export const App = () => {
   const [tasks, setTasks] = useState([]);
-   const [selectedDay, setSelectedDay] = useState(null);
+  const [selectedDay, setSelectedDay] = useState(null);
 
   const addTask = () => {
-    const newTask = {
-      dayTask: 'Enter day',
-      title: 'Write title',
-      departament: 'Chose department',
-      content: 'write content',
-      id: nanoid(),
-    };
-    setTasks([...tasks, newTask]);
-  }
+    setTasks(prevTasks => [
+      ...prevTasks,
+      {
+        dayTask: 'Enter day',
+        title: 'Write title',
+        departament: 'Chose department',
+        content: 'write content',
+        id: nanoid(),
+      },
+    ]);
+  };
 
-const getActiveDay = () => {
-  return tasks.find(task => task.id === selectedDay)
-  }
-  
-  const updateSchedule = (myUpdatedTask) => {
-    const updatedTasks = tasks.map(task => {
-      if (task.id === myUpdatedTask.id) return myUpdatedTask;
-      return task;
-    })
-    setTasks(updatedTasks)
-  }
+  const getActiveDay = () => tasks.find(task => task.id === selectedDay);
 
-  const deleteDay = (taskId) => {
-setTasks(tasks.filter((task)=> task.id!==taskId))
-  }
+  const updateSchedule = updatedTask => {
+    setTasks(prevTasks =>
+      prevTasks.map(task => (task.id === updatedTask.id ? updatedTask : task))
+    );
+  };
+
+  const deleteDay = taskId => {
+    setTasks(prevTasks => prevTasks.filter(task => task.id !== taskId));
+  };
+
   return (
-    <AppWrapper>
-      <TaskList
-        tasks={tasks}
-        addTask={addTask}
-        deleteDay={deleteDay}
-        selectedDay={selectedDay}
-        setSelectedDay={setSelectedDay}
-      />
-      <TaskForm updateSchedule={updateSchedule} selectedDay={getActiveDay()} />
-    </AppWrapper>
+    <Router>
+      <Navbar>
+        <NavbarList>
+          <NavbarItem>
+            <NavbarLink to="/" exact activeClassName="active">
+              Home
+            </NavbarLink>
+          </NavbarItem>
+          <NavbarItem>
+            <NavbarLink to="/taskmanager" activeClassName="active">
+              Task Manager
+            </NavbarLink>
+          </NavbarItem>
+          <NavbarItem>
+            <NavbarLink to="/about" activeClassName="active">
+              About
+            </NavbarLink>
+          </NavbarItem>
+          <NavbarItem>
+            <NavbarLink to="/contacts" activeClassName="active">
+              Contacts
+            </NavbarLink>
+          </NavbarItem>
+        </NavbarList>
+      </Navbar>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route
+          path="/taskmanager"
+          element={
+            <TaskManager
+              tasks={tasks}
+              addTask={addTask}
+              deleteDay={deleteDay}
+              selectedDay={selectedDay}
+              setSelectedDay={setSelectedDay}
+              updateSchedule={updateSchedule}
+              getActiveDay={getActiveDay}
+            />
+          }
+        />
+        <Route path="/about" element={<About />} />
+        <Route path="/contacts" element={<Contacts />} />
+      </Routes>
+    </Router>
   );
 };
