@@ -7,6 +7,7 @@ import Home from 'Pages/Home/Home';
 import About from 'Pages/About/About';
 import Contacts from 'Pages/Contacts/Contacts';
 import { Navbar, NavbarItem, NavbarLink, NavbarList } from './App.styled';
+import SliderPage from 'Pages/SliderPage/SliderPage';
 
 export const App = () => {
   const [tasks, setTasks] = useState([]);
@@ -42,29 +43,25 @@ export const App = () => {
       <Navbar>
         <NavbarList>
           <NavbarItem>
-            <NavbarLink to="/" exact activeClassName="active">
-              Home
-            </NavbarLink>
+            <NavbarLink to="/">Home</NavbarLink>
           </NavbarItem>
           <NavbarItem>
-            <NavbarLink to="/taskmanager" activeClassName="active">
-              Task Manager
-            </NavbarLink>
+            <NavbarLink to="/slider">Slider</NavbarLink>
           </NavbarItem>
           <NavbarItem>
-            <NavbarLink to="/about" activeClassName="active">
-              About
-            </NavbarLink>
+            <NavbarLink to="/taskmanager">Task Manager</NavbarLink>
           </NavbarItem>
           <NavbarItem>
-            <NavbarLink to="/contacts" activeClassName="active">
-              Contacts
-            </NavbarLink>
+            <NavbarLink to="/about">About</NavbarLink>
+          </NavbarItem>
+          <NavbarItem>
+            <NavbarLink to="/contacts">Contacts</NavbarLink>
           </NavbarItem>
         </NavbarList>
       </Navbar>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/slider" element={<SliderPage />} />
         <Route
           path="/taskmanager"
           element={
