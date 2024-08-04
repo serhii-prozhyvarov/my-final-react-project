@@ -1,42 +1,16 @@
-import { nanoid } from 'nanoid';
 import { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Navbar, NavbarItem, NavbarLink, NavbarList } from './App.styled';
 
-import TaskManager from 'Pages/TaskManager/TaskManager';
 import Home from 'Pages/Home/Home';
+import SliderPage from 'Pages/SliderPage/SliderPage';
+import TaskManager from 'Pages/TaskManager/TaskManager';
 import About from 'Pages/About/About';
 import Contacts from 'Pages/Contacts/Contacts';
-import { Navbar, NavbarItem, NavbarLink, NavbarList } from './App.styled';
-import SliderPage from 'Pages/SliderPage/SliderPage';
 
 export const App = () => {
   const [tasks, setTasks] = useState([]);
   const [selectedDay, setSelectedDay] = useState(null);
-
-  const addTask = () => {
-    setTasks(prevTasks => [
-      ...prevTasks,
-      {
-        dayTask: 'Enter day',
-        title: 'Write title',
-        departament: 'Chose department',
-        content: 'write content',
-        id: nanoid(),
-      },
-    ]);
-  };
-
-  const getActiveDay = () => tasks.find(task => task.id === selectedDay);
-
-  const updateSchedule = updatedTask => {
-    setTasks(prevTasks =>
-      prevTasks.map(task => (task.id === updatedTask.id ? updatedTask : task))
-    );
-  };
-
-  const deleteDay = taskId => {
-    setTasks(prevTasks => prevTasks.filter(task => task.id !== taskId));
-  };
 
   return (
     <Router>
@@ -67,12 +41,9 @@ export const App = () => {
           element={
             <TaskManager
               tasks={tasks}
-              addTask={addTask}
-              deleteDay={deleteDay}
               selectedDay={selectedDay}
               setSelectedDay={setSelectedDay}
-              updateSchedule={updateSchedule}
-              getActiveDay={getActiveDay}
+              setTasks={setTasks}
             />
           }
         />

@@ -1,26 +1,49 @@
-import { TaskForm } from "components/TaskForm/TaskForm";
-import { TaskList } from "components/TaskList/TaskList";
-import { AppWrapper } from "./TaskManager.styled";
+import { TaskForm } from 'components/TaskForm/TaskForm';
+import { TaskList } from 'components/TaskList/TaskList';
+import { AppWrapper } from './TaskManager.styled';
 
-function TaskManager({
-  tasks,
-  addTask,
-  deleteDay,
-  selectedDay,
-  setSelectedDay,
-  updateSchedule,
-  getActiveDay,
-}) {
+import { useState } from 'react';
+
+function TaskManager({ tasks, selectedDay, setSelectedDay, setTasks }) {
+  const [openForm, setOpenForm] = useState(false);
+
+  const openFormFunc = () => {
+    setOpenForm(!openForm);
+  };
+
+  const getActiveDay = () => tasks.find(task => task.id === selectedDay);
+
+  const updateSchedule = updatedTask => {
+    setTasks(prevTasks =>
+      prevTasks.map(task => (task.id === updatedTask.id ? updatedTask : task))
+    );
+    setOpenForm(false);
+  };
+
+  const addTask = newTask => {
+    setTasks(prevTasks => [...prevTasks, newTask]);
+    setOpenForm(false);
+  };
+
+  const deleteDay = taskId => {
+    setTasks(prevTasks => prevTasks.filter(task => task.id !== taskId));
+  };
+
   return (
     <AppWrapper>
       <TaskList
         tasks={tasks}
-        addTask={addTask}
+        openFormFunc={openFormFunc}
         deleteDay={deleteDay}
         selectedDay={selectedDay}
         setSelectedDay={setSelectedDay}
       />
-      <TaskForm updateSchedule={updateSchedule} selectedDay={getActiveDay()} />
+      <TaskForm
+        openForm={openForm}
+        updateSchedule={updateSchedule}
+        addTask={addTask}
+        selectedDay={getActiveDay()}
+      />
     </AppWrapper>
   );
 }

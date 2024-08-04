@@ -23,3 +23,18 @@ export const Input = styled.input`
   padding: 10px;
   border-radius: 20px;
 `;
+
+export const SubmitButton = styled.button`
+  cursor: pointer;
+  margin-bottom: 10px;
+  min-width: 80px;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #4aa412;
+  padding: 5px;
+  border-radius: 10px;
+  border: none;
+  font-size: 17px;
+  color: #ffffff;
+  font-weight: 700;
+  border: solid 1px #000000;
+`;

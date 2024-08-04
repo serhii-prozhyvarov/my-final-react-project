@@ -9,6 +9,7 @@ import {
 export const TaskList = ({
   tasks,
   addTask,
+  openFormFunc,
   deleteDay,
   selectedDay,
   setSelectedDay,
@@ -16,7 +17,7 @@ export const TaskList = ({
   return (
     <TaskListWrapper>
       <h1>Add your task into todo List</h1>
-      <AddButton onClick={addTask}>Add</AddButton>
+      <AddButton onClick={openFormFunc}>Open form</AddButton>
       {tasks.map(({ title, content, id, departament, dayTask }, index) => {
         return (
           <div key={index}>
