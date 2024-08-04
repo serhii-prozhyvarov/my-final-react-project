@@ -1,7 +1,6 @@
 import { TaskForm } from 'components/TaskForm/TaskForm';
 import { TaskList } from 'components/TaskList/TaskList';
 import { AppWrapper } from './TaskManager.styled';
-
 import { useState } from 'react';
 
 function TaskManager({ tasks, selectedDay, setSelectedDay, setTasks }) {
@@ -47,4 +46,5 @@ function TaskManager({ tasks, selectedDay, setSelectedDay, setTasks }) {
     </AppWrapper>
   );
 }
+
 export default TaskManager;

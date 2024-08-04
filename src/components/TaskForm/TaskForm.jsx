@@ -1,6 +1,6 @@
 import { nanoid } from 'nanoid';
 import { Input, SubmitButton, TaskFormWrapper } from './TaskForm.styled';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export const TaskForm = ({
   updateSchedule,
@@ -8,12 +8,32 @@ export const TaskForm = ({
   openForm,
   addTask,
 }) => {
+  // Initialize form state
   const [taskData, setTaskData] = useState({
-    dayTask: selectedDay?.dayTask || '',
-    title: selectedDay?.title || '',
-    departament: selectedDay?.departament || '',
-    content: selectedDay?.content || '',
+    dayTask: '',
+    title: '',
+    departament: '',
+    content: '',
   });
+
+  // Update form state when selectedDay changes
+  useEffect(() => {
+    if (selectedDay) {
+      setTaskData({
+        dayTask: selectedDay.dayTask || '',
+        title: selectedDay.title || '',
+        departament: selectedDay.departament || '',
+        content: selectedDay.content || '',
+      });
+    } else {
+      setTaskData({
+        dayTask: '',
+        title: '',
+        departament: '',
+        content: '',
+      });
+    }
+  }, [selectedDay]);
 
   const editTask = (field, value) => {
     setTaskData(prevData => ({
@@ -24,13 +44,9 @@ export const TaskForm = ({
 
   const handleSubmit = () => {
     if (selectedDay) {
-      // If there's a selectedDay, update the existing task
       updateSchedule({ ...taskData, id: selectedDay.id });
     } else {
-      // Otherwise, add a new task
-      addTask({
-        ...taskData, id: nanoid()
-       });
+      addTask({ ...taskData, id: nanoid() });
     }
     setTaskData({ dayTask: '', title: '', departament: '', content: '' }); // Reset form
   };
